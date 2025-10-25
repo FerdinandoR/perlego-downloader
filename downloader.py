@@ -14,7 +14,7 @@ import os
 import requests
 import websocket
 from pyppeteer import launch
-from PyPDF2 import PdfMerger
+from PyPDF2 import PdfWriter
 
 AUTH_TOKEN = ""
 BOOK_ID = ""
@@ -254,7 +254,7 @@ rel = requests.get(f"https://api.perlego.com/metadata/v2/metadata/books/{BOOK_ID
 book_title = json.loads(rel.text)['data']['results'][0]['title']
 
 print('merging pdf pages...')
-merger = PdfMerger()
+merger = PdfWriter()
 
 for chapter_no in sorted(contents):
 	merger.append(f'{cache_dir}/{chapter_no}.pdf')
